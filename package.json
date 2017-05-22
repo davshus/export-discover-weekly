@@ -1,0 +1,24 @@
+{
+  "name": "export-discover-weekly",
+  "version": "1.0.0",
+  "description": "Back up Spotify's Discover Weekly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davshus/export-discover-weekly.git"
+  },
+  "keywords": [
+    "spotify",
+    "music",
+    "playlists"
+  ],
+  "author": "David Shustin",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/davshus/export-discover-weekly/issues"
+  },
+  "homepage": "https://github.com/davshus/export-discover-weekly#readme"
+}
