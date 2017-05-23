@@ -19,7 +19,7 @@ function run(token) {
       'Authorization': 'Bearer ' + token
     }
   };
-
+  // console.log(userInfoOptions.headers['Authorization']);
   const userInfoReq = https.request(userInfoOptions, (res) => {
     console.log(`STATUS: ${res.statusCode}`);
     res.on('data', (chunk) => {
