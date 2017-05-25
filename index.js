@@ -15,7 +15,7 @@ var tokenReceived = false;
 var clientData;
 var date = new Date();
 date.setDate((date.getDate() - date.getDay()) + 1);
-let month = date.getMonth(), day = date.getDate(), year = date.getFullYear();
+let month = date.getMonth() + 1, day = date.getDate(), year = date.getFullYear();
 const playlistName = 'DW ' + month + '/' + day + '/' + year.toString().substring(year.toString().length - 2);
 try {
   clientData = JSON.parse(fs.readFileSync('./config.json').toString());
