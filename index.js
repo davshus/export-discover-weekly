@@ -13,7 +13,10 @@ var app = express();
 //This application uses Spotify's implicit code flow authorization.
 var tokenReceived = false;
 var clientData;
-const playlistName = 'DW 5/22/17';
+var date = new Date();
+date.setDate((date.getDate() - date.getDay()) + 1);
+let month = date.getMonth(), day = date.getDate(), year = date.getFullYear();
+const playlistName = 'DW ' + month + '/' + day + '/' + year.toString().substring(year.toString().length - 2);
 try {
   clientData = JSON.parse(fs.readFileSync('./config.json').toString());
 } catch (e) {
