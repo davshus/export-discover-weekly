@@ -29,7 +29,6 @@ app.get('/redir', (req, res) => {
 });
 app.get('/auth', (req, res) => {
   if (tokenReceived) return;
-  // console.log(req.query);
   if (req.query.state != state) {
     console.error(error('Fraudulent state detected from %s!'), req.hostname);
     return;
@@ -39,11 +38,9 @@ app.get('/auth', (req, res) => {
     process.exit(1);
   }
   console.log(success('Received token authorization!'));
-  // console.log(req.query);
   res.sendFile(__dirname + '/public/autoclose.html');
   tokenReceived = true;
   let token = req.query.access_token;
-  // console.log(token);
   let DWhref, id;
   getMyInfo(token)
     .then(info => {
@@ -73,30 +70,10 @@ app.get('/auth', (req, res) => {
       console.log(error('Exiting...\n'));
       process.exit(1);
     });
-  // app.close();
 });
 app.listen(responsePort, () => console.log(note('Listening for OAuth token authorizaton on port', responsePort)));
 console.log(note('Opening web browser to authorize...'));
 opn('https://accounts.spotify.com/authorize' + query);
-// function getID(token) {
-//   const userInfoOptions = {
-//     hostname: 'api.spotify.com',
-//     path: '/v1/me',
-//     method: 'GET',
-//     headers: {
-//       'Authorization': 'Bearer ' + token
-//     }
-//   };
-//   // console.log(userInfoOptions.headers['Authorization']);
-//   const userInfoReq = https.request(userInfoOptions, (res) => {
-//     console.log(`STATUS: ${res.statusCode}`);
-//     res.on('data', (chunk) => {
-//       console.log(`BODY: ${chunk}`);
-//     })
-//   })
-//   userInfoReq.on('error', (err) => console.error(error('There was an error with the user info request: %s'), e.message));
-//   userInfoReq.end();
-// }
 function getMyInfo(token) {
   let options = {
     uri: 'https://api.spotify.com/v1/me',
