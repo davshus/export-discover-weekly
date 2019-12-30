@@ -16,7 +16,7 @@ var clientData;
 var date = new Date();
 date.setDate((date.getDate() - date.getDay()) + 1);
 let month = date.getMonth() + 1, day = date.getDate(), year = date.getFullYear();
-const playlistName = 'DW ' + month + '/' + day + '/' + year.toString().substring(year.toString().length - 2);
+const playlistName = 'Daily Mix Backup '/*'DW '*/ + month + '/' + day + '/' + year.toString().substring(year.toString().length - 2);
 try {
   clientData = JSON.parse(fs.readFileSync('./config.json').toString());
 } catch (e) {
@@ -54,10 +54,13 @@ app.get('/auth', (req, res) => {
     })
     .then(playlists => {
       console.log(note('Received user playlists...'));
-      return getTracksOfPlaylist(token, filterDW(JSON.parse(playlists).items).href);
+      console.log(error('Hello past me, this is future you. I\'m hacking this shit.'));
+      // hardcoding this because that's how ELE does it
+      return getTracksOfPlaylist(token, 'https://api.spotify.com/v1/playlists/37i9dQZF1E36egGpoHDXvQ');//filterDW(JSON.parse(playlists).items).href);
     })
     .then(tracks => {
       console.log(note('Received Discovery Weekly tracks...'));
+      console.log(error('LMAO no. Received Daily Mix 1 tracks...'));
       return addTracksToPlaylist(token, DWhref, JSON.parse(tracks).items.map(item => item.track.uri));
     })
     .then(res => {
